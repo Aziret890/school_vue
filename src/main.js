@@ -1,25 +1,24 @@
-// import { createApp } from "vue";
-// import "./style.css";
-// import App from "./App.vue";
-// import { createPinia } from "pinia";
-// import Home from "./page/Home.vue";
-// import { createMemoryHistory, createRouter } from "vue-router";
-// const pinia = createPinia();
-// const app = createApp(App);
-// const routes = [{ path: "/", component: Home }];
-
-// const router = createRouter({
-//   history: createMemoryHistory(),
-//   routes,
-// });
-// app.use(pinia);
-// app.use(router);
-// createApp(App).mount("#app");
-
 import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 import Home from "./page/Home.vue";
-import { createRouter, createWebHistory } from "vue-router";
+import "../src/style.css";
+//!AOS
+import "aos/dist/aos.css";
+//! VUITIFY
+import "@mdi/font/css/materialdesignicons.css";
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
+//!VUE ICON
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import { FaFlag, RiZhihuFill } from "oh-vue-icons/icons";
+addIcons(FaFlag, RiZhihuFill);
+const vuetify = createVuetify({
+  components,
+  directives,
+});
 
 const routes = [
   {
@@ -32,4 +31,6 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).mount("#app");
+const app = createApp(App);
+app.component("v-icon", OhVueIcon);
+app.use(vuetify).use(router).mount("#app");

@@ -4,9 +4,25 @@
 body {
   margin: 0;
   padding: 0;
+  background: rgb(30, 32, 36);
+  font-family: "Poppins", sans-serif;
+  --color1: #fff;
+  --color2: #181818;
 }
 .container {
   margin: 0 auto;
   max-width: 1022px;
   padding: 0 10px;
+}
+li {
+  cursor: pointer;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+  border: none;
 }
