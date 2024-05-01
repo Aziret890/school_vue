@@ -45,13 +45,19 @@
     </div>
   </header>
 </template>
-<script setup>
-import { ref } from "vue";
-
-const state = ref(true);
-function isOpen() {
-  state.value = !state.value;
-  console.log(state.value);
+<script>
+export default {
+  data() {
+    return {
+      state: true
+    }
+  },
+  methods: {
+    isOpen(){
+      this.state = !this.state
+      console.log(this.state)
+    }
+  }
 }
 </script>
 <style lang="scss">
