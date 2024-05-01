@@ -15,29 +15,45 @@
             <li>Магазин</li>
           </nav>
           <div class="header__content__btns flex items-center">
-            <button class="w-[60px]">
-              <img src="/public/svg/translate.svg" alt="" />
-            </button>
             <button class="header__content__btns__button">Войти</button>
           </div>
         </div>
         <div class="dropdown">
-          <!-- bwepbnwepobnwepobnweprobnweponbs -->
-          <div>
-            <img src="/public/svg/dropDown.svg" alt="" />
+          <div
+            @click="isOpen"
+            :class="state.value ? 'off-screen-menu active' : 'off-screen-menu'"
+          >
+            <ul>
+              <li><a href="#">home</a></li>
+              <li><a href="#">about</a></li>
+              <li><a href="#">contact</a></li>
+            </ul>
           </div>
-          <div  class="dropdown__content-active">
-            <nav>
-              <li>home</li>
-              <li>cnwqpovnqwp</li>
-            </nav>
-          </div>
+
+          <nav>
+            <div
+              @click="isOpen"
+              :class="state.value ? 'ham-menu active' : 'ham-menu'"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
   </header>
 </template>
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const state = ref(true);
+function isOpen() {
+  state.value = !state.value;
+  console.log(state.value);
+}
+</script>
 <style lang="scss">
 .header {
   .dropdown {
@@ -63,7 +79,6 @@
         text-align: left;
       }
     }
-
     &__btns {
       max-width: 200px;
 
@@ -113,17 +128,85 @@
     }
     .dropdown {
       display: block;
-      &__content {
-        margin: 200px auto;
-        position: relative;
-        transform: perspective(600px) translate(0, -100%) rotateX(45deg);
-        transition: all 0.8s ease 0s;
-        opacity: 0;
-        // fmwqf[]
+      a {
+        color: white;
       }
-      &__content-active {
-        transform: perspective(600px) translate(0, 0) rotateX(0deg);
-        opacity: 1;
+      a:visited {
+        color: white;
+      }
+      a:hover {
+        color: #6f86ff;
+      }
+
+      body {
+        background-color: rgb(65, 71, 97);
+        font-family: sans-serif;
+      }
+
+      .off-screen-menu {
+        background-color: rgb(34, 37, 49);
+        height: 100vh;
+        width: 100%;
+        max-width: 450px;
+        position: fixed;
+        top: 0;
+        right: -450px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 3rem;
+        transition: 0.3s ease;
+      }
+      .off-screen-menu.active {
+        right: 0;
+      }
+
+      /* nav */
+      nav {
+        padding: 1rem;
+        display: flex;
+        background-color: rgb(34, 37, 49);
+      }
+
+      /* ham menu */
+      .ham-menu {
+        height: 50px;
+        width: 40px;
+        margin-left: auto;
+        position: relative;
+      }
+      .ham-menu span {
+        height: 5px;
+        width: 100%;
+        background-color: #6f86ff;
+        border-radius: 25px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: 0.3s ease;
+      }
+      .ham-menu span:nth-child(1) {
+        top: 25%;
+      }
+      .ham-menu span:nth-child(3) {
+        top: 75%;
+      }
+      .ham-menu.active span {
+        background-color: white;
+      }
+      .ham-menu.active span:nth-child(1) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      .ham-menu.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .ham-menu.active span:nth-child(3) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
       }
     }
   }
